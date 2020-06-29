@@ -1,0 +1,26 @@
+stages:
+  - tests
+  - build
+
+complexity:
+  stage: tests
+  image: olympus.azurecr.io/python:3.7
+  script:
+    - xenon --max-average A --max-modules B --max-absolute B .
+
+flake8:
+  stage: tests
+  image: olympus.azurecr.io/python:3.7
+  script:
+    - flake8 *
+
+build:
+  stage: build
+  image: binkhq/python:3.8
+  script:
+    - pip install twine
+    - python setup.py sdist bdist
+    - twine check dist/*
+    - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
+  only:
+    - tags
