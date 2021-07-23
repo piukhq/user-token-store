@@ -1,5 +1,6 @@
-from redis import StrictRedis
 import requests
+
+from redis import StrictRedis
 
 
 class UserTokenStore:
@@ -22,7 +23,7 @@ class UserTokenStore:
         :param scheme_account_id: The scheme account ID to create the key for.
         :return: A string key to use as the key for the given scheme account ID.
         """
-        return 'user-token-scheme-account-{}'.format(scheme_account_id)
+        return "user-token-scheme-account-{}".format(scheme_account_id)
 
     def get(self, scheme_account_id):
         """
@@ -32,7 +33,7 @@ class UserTokenStore:
         """
         token = self.storage.get(self._key(scheme_account_id))
         if not token:
-            raise self.NoSuchToken('There is no token stored for scheme_account_id `{}`'.format(scheme_account_id))
+            raise self.NoSuchToken("There is no token stored for scheme_account_id `{}`".format(scheme_account_id))
         return token.decode()
 
     def set(self, scheme_account_id, token):
@@ -52,8 +53,9 @@ class UserTokenStore:
         """
         self.storage.delete(self._key(scheme_account_id))
 
-    def get_new(self, url, token_path, scheme_account_id, method='POST',
-                headers=None, data=None, json=None, params=None):
+    def get_new(
+        self, url, token_path, scheme_account_id, method="POST", headers=None, data=None, json=None, params=None
+    ):
         """
         Generic API call to get new user tokens. If you can't use this, set user token in Midas agent and call it.
         :param url: URL to call to get auth token.
@@ -79,4 +81,4 @@ class UserTokenStore:
             return user_token
 
         except (ValueError, KeyError) as e:
-            raise self.TokenError('There was an error getting user token from request: {}'.format(e)) from e
+            raise self.TokenError("There was an error getting user token from request: {}".format(e)) from e
