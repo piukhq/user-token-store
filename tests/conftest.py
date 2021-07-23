@@ -1,9 +1,11 @@
-import uuid
 import os
+import uuid
+
+from unittest.mock import MagicMock
+
 import pytest
 import redis
 import requests
-from unittest.mock import MagicMock
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 

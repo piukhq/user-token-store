@@ -36,7 +36,7 @@ def test_delete(redis_url, random_key, random_value) -> None:
 
 
 def test_get_new(redis_url, patch_requests, random_key, random_value) -> None:
-    patch_requests.json.return_value = {'test1': random_value}
+    patch_requests.json.return_value = {"test1": random_value}
 
     store = UserTokenStore(redis_url)
 
@@ -48,7 +48,7 @@ def test_get_new(redis_url, patch_requests, random_key, random_value) -> None:
 
 
 def test_get_new_nested(redis_url, patch_requests, random_key, random_value) -> None:
-    patch_requests.json.return_value = {'test1': {'test2': {'test3': random_value}}}
+    patch_requests.json.return_value = {"test1": {"test2": {"test3": random_value}}}
 
     store = UserTokenStore(redis_url)
 
@@ -57,12 +57,9 @@ def test_get_new_nested(redis_url, patch_requests, random_key, random_value) -> 
 
 
 def test_get_bad_json_path(redis_url, patch_requests, random_key, random_value) -> None:
-    patch_requests.json.return_value = {'test1': random_value}
+    patch_requests.json.return_value = {"test1": random_value}
 
     store = UserTokenStore(redis_url)
 
     with pytest.raises(store.TokenError):
         store.get_new("https://yourmum.com", ["nah_m8"], random_key)
-
-
-
