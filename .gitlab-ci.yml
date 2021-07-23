@@ -46,7 +46,7 @@ test:pytest:
 build:
   stage: build
   before_script:
-    - poetry config repositories.gitlab https://gitlab.example.com/api/v4/projects/306/packages/pypi
+    - poetry config repositories.gitlab https://git.bink.com/api/v4/projects/306/packages/pypi
     - poetry config http-basic.gitlab gitlab-ci-token ${CI_JOB_TOKEN}
   script:
     - pip install poetry-dynamic-versioning
