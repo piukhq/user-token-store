@@ -22,8 +22,9 @@ redis = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
+pytest-cov = "*"
 flake8 = "*"
-black = "==21.4.b1"
+black = "==21.7b0"
 isort = "*"
 mypy = "*"
 
@@ -56,3 +57,8 @@ ignore_missing_imports = true
 
 [tool.poetry-dynamic-versioning.substitution]
 files = ["user_auth_token/__init__.py"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+]
