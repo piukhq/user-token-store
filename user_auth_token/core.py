@@ -38,7 +38,7 @@ class UserTokenStore:
         """
         token = self.storage.get(self._key(scheme_account_id))
         if not token:
-            raise self.NoSuchToken("There is no token stored for scheme_account_id `{}`".format(scheme_account_id))
+            raise self.NoSuchToken(f"There is no token stored for scheme_account_id `{scheme_account_id}`")
         return token.decode()
 
     def set(self, scheme_account_id: str, token: str) -> None:
@@ -98,4 +98,4 @@ class UserTokenStore:
             return user_token
 
         except (ValueError, KeyError) as e:
-            raise self.TokenError("There was an error getting user token from request: {}".format(e)) from e
+            raise self.TokenError(f"There was an error getting user token from request: {e}") from e

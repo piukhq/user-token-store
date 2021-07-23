@@ -38,6 +38,11 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry-dynamic-versioning]
 enable = true
+# Default pattern forces v prefix
+pattern = "^v?(?P<base>\\d+\\.\\d+\\.\\d+)(-?((?P<stage>[a-zA-Z]+)\\.?(?P<revision>\\d+)?))?(\\+(?P<tagged_metadata>.+))?$"
+
+[tool.poetry-dynamic-versioning.substitution]
+files = ["user_auth_token/__init__.py"]
 
 [tool.black]
 line-length = 120
@@ -58,9 +63,6 @@ disallow_untyped_defs = true
 disallow_incomplete_defs = true
 disallow_untyped_decorators = true
 ignore_missing_imports = true
-
-[tool.poetry-dynamic-versioning.substitution]
-files = ["user_auth_token/__init__.py"]
 
 [tool.pytest.ini_options]
 testpaths = [
