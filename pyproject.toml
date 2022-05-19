@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "user-token-store"
-version = "1.1.1"
+version = "1.1.2"
 description = "A store for user auth tokens"
 authors = ["Bink <bink@bink.bink>"]
 readme = "README.md"
@@ -13,13 +13,14 @@ classifiers = [
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
 ]
 packages = [
     { include = "user_auth_token" },
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 requests = "*"
 redis = "*"
 
